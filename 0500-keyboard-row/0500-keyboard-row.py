@@ -2,6 +2,7 @@ class Solution:
     def findWords(self, words: List[str]) -> List[str]:
         firstRow = "asdfghjkl"  
         secondRow = "qwertyuiop"
+        thirdRow = "zxcvbnm"
     
         str1 = ""
         ans = ""
@@ -13,21 +14,21 @@ class Solution:
             for j in range(len(str1)):
                 s = str1[j]
                 if s in firstRow:
-                    ans = callFirstRow(str1)
+                    ans = callRow(str1,firstRow)
                     break
                 elif s in secondRow:
-                    ans = callSecondRow(str1)
+                    ans = callRow(str1,secondRow)
                     break
                 else:  
-                    ans = callThirdRow(str1)
+                    ans = callRow(str1,thirdRow)
                     break
                     
             if str1 == ans:
                 answer.append(words[i])
             
         return answer  
-def callFirstRow(str1):
-    firstRow = "asdfghjkl"
+def callRow(str1,rows):
+    firstRow = rows
     s = ""
     ans = ""
     for i in range(len(str1)):
@@ -35,21 +36,3 @@ def callFirstRow(str1):
         if s in firstRow:
             ans += s
     return ans
-def callSecondRow(str1):
-    secondRow = "qwertyuiop"
-    s = ""
-    ans = ""
-    for i in range(len(str1)):
-        s = str1[i]
-        if s in secondRow:
-            ans += s
-    return ans 
-def callThirdRow(str1):
-    secondRow = "zxcvbnm"
-    s = ""
-    ans = ""
-    for i in range(len(str1)):
-        s = str1[i]
-        if s in secondRow:
-            ans += s
-    return ans  
