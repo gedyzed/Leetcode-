@@ -4,7 +4,7 @@ class Solution:
         first = 0
         second = 1
 
-        while first < second and second < len(nums):
+        while second < len(nums):
             if nums[first] == nums[second]:
                 nums.remove(nums[second])
             else:
