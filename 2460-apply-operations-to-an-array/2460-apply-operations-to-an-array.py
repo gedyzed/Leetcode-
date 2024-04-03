@@ -1,7 +1,7 @@
 class Solution:
     def applyOperations(self, nums: List[int]) -> List[int]:
         
-        left,right = 0,1
+        left= 0
 
         for right in range(1,len(nums)):
             if nums[right] == nums[left]:
