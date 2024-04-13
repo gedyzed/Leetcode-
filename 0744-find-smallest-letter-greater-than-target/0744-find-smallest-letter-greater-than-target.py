@@ -7,9 +7,7 @@ class Solution:
 
         while left <= right :
             mid = (left + right)//2
-            if letters[mid] == target and mid + 1 <= len(letters)-1 and  letters[mid+1] != target:   
-                return letters[mid+1]
-            elif letters[mid] > target and  mid-1 >= 0 and letters[mid-1] <= target :   
+            if letters[mid] > target and  mid-1 >= 0 and letters[mid-1] <= target :   
                 return letters[mid]   
             elif letters[mid] > target :
                 right = mid - 1
