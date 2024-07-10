@@ -6,13 +6,11 @@ class Solution:
 
         for right in range(len(s)):
             chars[s[right]] += 1
-
-            while any(count > 2 for count in chars.values()):
+            
+            while chars[s[right]] > 2:
                 chars[s[left]] -= 1
-                if chars[s[left]] == 0:
-                    del chars[s[left]]
                 left += 1
-
-            max_length = max(max_length, right - left + 1)
-
+                 
+            max_length = max(max_length,right-left+1)    
+     
         return max_length
