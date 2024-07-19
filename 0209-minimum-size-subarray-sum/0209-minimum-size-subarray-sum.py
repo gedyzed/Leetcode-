@@ -7,10 +7,11 @@ class Solution:
 
         for right in range(len(nums)):
             targetsum += nums[right]
-            while targetsum >= target and left <= right:
-                minSize = min(minSize,right-left+1) 
+            while targetsum >= target :
+                minSize = min(minSize,right - left + 1) 
                 targetsum -= nums[left]  
-                left += 1  
+                left += 1 
+
         if minSize == 100001:
             minSize = 0
             
