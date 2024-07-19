@@ -2,21 +2,22 @@ class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
 
         n = len(nums)
-        prefix = [1]*(n+1)
-        suffix = [1]*(n+1)
+        answer = [1] * n
 
-        for left,right in enumerate(range(n-1,-1,-1)):
-            suffix[right] = suffix[right+1] * nums[right]
-            prefix[left] = prefix[left-1] * nums[left]
-
-        ans = [0] * n
+        prefix = 1
         for i in range(n):
-            ans[i] = prefix[i-1] * suffix[i+1]
+            answer[i] = prefix
+            prefix *= nums[i]
+      
+        suffix = 1    
+        for i in range(n-1,-1,-1):
+            answer[i] *= suffix
+            suffix *= nums[i]
 
-        return ans    
+        return answer    
         
 
- 
+
 
 
 
