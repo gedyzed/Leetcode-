@@ -1,9 +1,8 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        value_to_indices = defaultdict(int)
-        x = 0
-        ans = []
+        value_to_indices = defaultdict(int) 
+        x = 0  
         for i in range(len(nums)):
             x = target - nums[i]
             if x in value_to_indices:
