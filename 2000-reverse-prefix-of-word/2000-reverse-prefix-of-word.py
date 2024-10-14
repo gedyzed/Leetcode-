@@ -3,9 +3,10 @@ class Solution:
 
         left = 0
         stack = []
-        answer = ''
-        for right in range(len(word)):
+        
+        for right in range(len(word)):   
             stack.append(word[right])
+            
             if word[right] == ch:
                 stack.reverse()
                 return ''.join(stack) + word[right+1:]
