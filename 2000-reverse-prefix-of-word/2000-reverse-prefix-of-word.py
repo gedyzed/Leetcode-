@@ -7,9 +7,8 @@ class Solution:
         for right in range(len(word)):
             stack.append(word[right])
             if word[right] == ch:
-                while stack:
-                    answer += stack.pop()
-                return answer + word[right+1:]
+                stack.reverse()
+                return ''.join(stack) + word[right+1:]
         return word
 
 
