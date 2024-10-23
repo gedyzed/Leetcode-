@@ -3,24 +3,9 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        
-        left = 0
-        for right in range(len(nums)):
-            if nums[right]:
-                nums[left],nums[right] = nums[right],nums[left]
-                left += 1
-      
-
-    
-    
-
-               
-
-                 
-
-
-
-
-
-
-        
+        current  = 0
+        for i in range(len(nums)):
+            if nums[i]:
+                if i != current:
+                    nums[current], nums[i] = nums[i], nums[current]
+                current += 1    
