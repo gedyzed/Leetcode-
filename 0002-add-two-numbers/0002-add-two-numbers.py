@@ -5,36 +5,22 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        nums1 = self.getNums(l1)
-        nums2 = self.getNums(l2)
+        head = ListNode(0)
+        tail, carry = head, 0 
+        
+        while l1 is not None or l2 is not None or carry:
+            digit1 = (l1.val if l1 else 0)
+            digit2 = (l2.val if l2 else 0)
 
-        add = self.mergeNums(nums1) + self.mergeNums(nums2) 
-        nums = str(add)
+            sum = digit1 + digit2 + carry
+            digit = sum % 10
+            carry = sum // 10
 
-        head = None 
-        for i in range(len(nums) - 1, -1 , -1):
-            if head == None:
-                n = ListNode(int(nums[i])) 
-                head = n
-            else:
-                temp = head
-                while temp.next != None:
-                    temp = temp.next
-                n = ListNode(int(nums[i])) 
-                temp.next = n        
+            newNode = ListNode(digit)
+            tail.next = newNode
+            tail = newNode
+            
+            l1 = l1.next if l1 is not None else None
+            l2 = l2.next if l2 is not None else None  
 
-        return head
-
-    def getNums(self, node):
-        temp = node
-        nums = []
-        while temp != None:
-            nums.append(temp.val)
-            temp = temp.next
-        return nums  
-    
-    def mergeNums(self, nums):
-        nums1 = 0
-        for i in range(len(nums)) :
-            nums1 += nums[i] * 10 ** i    
-        return nums1       
+        return head.next          
