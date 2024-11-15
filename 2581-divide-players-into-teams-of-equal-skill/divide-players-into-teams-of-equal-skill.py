@@ -8,7 +8,6 @@ class Solution:
         skill.sort()
         left, right = 0, n - 1 
 
-        pairs = {}
         while left < right:
             if skill[left] + skill[right] != skillSum:
                 return -1
@@ -16,9 +15,4 @@ class Solution:
             left += 1
             right -= 1
 
-        return chemistry    
-
-
-
-
-        
+        return chemistry            
