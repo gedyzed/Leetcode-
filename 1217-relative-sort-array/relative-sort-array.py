@@ -15,7 +15,8 @@ class Solution:
                 count[arr2[left]] -= 1
             else: left += 1 
 
-        ans.extend(arr)
+        for num in arr:
+            ans.append(num)
               
         return ans
         
