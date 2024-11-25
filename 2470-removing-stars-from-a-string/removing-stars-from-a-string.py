@@ -3,11 +3,11 @@ class Solution:
 
         stack = []
         for c in s:
-            if c != '*':
-                stack.append(c)
-            elif stack:
-                stack.pop()    
-                
+            stack.append(c)
+            if c == "*":
+                stack.pop() 
+                stack.pop()   
+
         return "".join(stack)
 
         
