@@ -3,9 +3,9 @@ class Solution:
 
         stack = []
         for log in logs:
-            if log == "../" and stack:
-                stack.pop()
-            elif log != "./" and log != "../":
+            if log == "../":
+                if stack: stack.pop()
+            elif log != "./":
                 stack.append(log)  
                   
         return len(stack)        
