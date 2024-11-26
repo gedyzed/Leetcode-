@@ -3,20 +3,19 @@ class Solution:
 
         operands = []
         num = num2 = 0
-        operator = "+-*/"
         for token in tokens:
-            if token in operator:
-                if token == "*" and len(operator) >= 2:
+            if token in "+-*/":
+                if token == "*":
                     num = operands.pop() * operands.pop()
-                elif token == "/" and len(operator) >= 2:
+                elif token == "/" :
                     num2 = operands.pop()
                     num = operands.pop()
                     num = int(num / num2)
-                elif token == "-" and len(operator) >= 2:
+                elif token == "-":
                     num2 = operands.pop()
                     num = operands.pop()
                     num = num - num2
-                elif token == "+" and len(operator) >= 2:
+                elif token == "+":
                     num = operands.pop() +  operands.pop()   
                 operands.append(num)          
             else:
@@ -24,16 +23,6 @@ class Solution:
  
         return operands[0]         
 
-                
-
-
-
-
-
-
-
-    
-  
-        print(operators, operands)                  
+                            
 
         
