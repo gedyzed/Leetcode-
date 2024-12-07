@@ -1,23 +1,28 @@
 class Solution:
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
 
-        def countingSort(nums):
-            max_, min_ = max(nums), min(nums)
-            count = [0] * (max_ - min_ + 1)
+        nums_ = sorted(nums)
+        count = {}
+        result = []
 
-            for num in nums:
-                count[num - min_] += 1
+        for i in range(len(nums_)):
+            if nums_[i] not in count:
+                count[nums_[i]] = i
+        for i in range(len(nums)):
+            result.append(count[nums[i]])    
 
-            sorted_nums = [] 
-            for i, freq in enumerate(count):
-                sorted_nums.extend([i + min_] * freq)     
+        return result        
 
-            return sorted_nums    
+
+
+
+
 
         count = Counter(nums)
+
         nums_ = list(set(nums))
+        nums_.sort()
         min_elements = defaultdict(int)
-        nums_ = countingSort(nums_)
         min_elements[nums_[0]] = count[nums_[0]]
 
         for i in range(1,len(nums_)):
