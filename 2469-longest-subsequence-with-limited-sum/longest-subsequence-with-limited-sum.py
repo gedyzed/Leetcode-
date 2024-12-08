@@ -7,7 +7,7 @@ class Solution:
                 mid = (left + right) // 2
                 if nums[mid] <= num:
                     len_ = mid + 1
-                    left += 1
+                    left = mid + 1
                 elif nums[mid] > num:
                     right = mid - 1
                 else:
