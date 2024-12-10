@@ -1,21 +1,30 @@
 class MyStack:
-
     def __init__(self):
-        self.stack = []
-        
+        self.queue1 = []  # Main queue for managing stack elements
+        self.queue2 = []  # Temporary queue for swapping elements
+
     def push(self, x: int) -> None:
-        self.stack.append(x)
+        self.queue1.append(x)
 
     def pop(self) -> int:
-        return self.stack.pop()
-        
+        while len(self.queue1) > 1:
+            self.queue2.append(self.queue1.pop(0))
+        top_element = self.queue1.pop(0)
+        self.queue1, self.queue2 = self.queue2, []
+        return top_element
+
     def top(self) -> int:
-        return self.stack[-1]
-        
+        while len(self.queue1) > 1:
+            self.queue2.append(self.queue1.pop(0))
+        top_element = self.queue1[0]
+        self.queue2.append(self.queue1.pop(0))
+        self.queue1, self.queue2 = self.queue2, []
+        return top_element
+
     def empty(self) -> bool:
-        return not len(self.stack)
+        return not self.queue1 and not self.queue2
         
-    
+
 
 # Your MyStack object will be instantiated and called as such:
 # obj = MyStack()
