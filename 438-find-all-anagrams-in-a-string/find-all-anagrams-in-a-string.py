@@ -10,24 +10,18 @@ class Solution:
 
         target = Counter(p)
         window = defaultdict(int)
-        result = []
-        k = len(p)
-        left = count = 0
+        result, k = [], len(p)
+
         for right in range(len(s)):
-         
             if s[right] in target :
                 window[s[right]] += 1
-        
+
             if right >= k - 1:  
                 if check(target, window):    
-                    result.append(left) 
-                window[s[left]] -= 1
-                left += 1   
-                  
+                    result.append(right - k + 1) 
+                window[s[right - k + 1]] -= 1
+                               
         return result  
 
                  
                   
-
-
-        
