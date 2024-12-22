@@ -1,12 +1,17 @@
 class Solution:
     def minimumDifference(self, nums: List[int], k: int) -> int:
-
+        
         nums.sort()
-        min_difference = float('inf')
-        for i in range(len(nums)):
-            if i >= k - 1:
-                min_difference = min(min_difference, nums[i] - nums[i - k + 1])
-        return min_difference           
+        left, right = 0, k - 1
+        min_diff = float('inf')
+
+        while right < len(nums):
+            min_diff = min(min_diff, nums[right] - nums[left])
+            left += 1
+            right += 1
+
+        return min_diff
+    
 
 
             
