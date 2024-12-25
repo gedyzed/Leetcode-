@@ -8,7 +8,7 @@ class Solution:
                 stack.pop()
             elif char == '(':
                 stack.append(char)    
-            elif not stack :
+            else:
                 closing += 1
 
         return closing + len(stack) 
