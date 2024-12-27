@@ -1,12 +1,9 @@
 class Solution:
     def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
-        queue = deque ()
         n = len(deck)
+        queue = deque (range(n))
         answer = [0] * n
         deck.sort()
-
-        for i in range(n):
-            queue.append(i)
 
         for i in range(n):
             answer[queue.popleft()] = deck[i]
