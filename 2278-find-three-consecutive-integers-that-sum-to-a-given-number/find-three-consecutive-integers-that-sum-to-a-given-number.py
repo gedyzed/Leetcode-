@@ -6,9 +6,7 @@ class Solution:
         if (prev + middle + next) == num:
             return [prev, middle, next]   
         elif (middle + 2 * next + 1 ) == num:
-            return [middle, next, next + 1 ]   
-        elif (prev * 2  + middle - 1 ) == num:
-             return [prev - 1 , prev, middle ]   
+            return [middle, next, next + 1 ]     
           
         return []      
 
