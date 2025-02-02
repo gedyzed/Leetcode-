@@ -3,11 +3,11 @@ class Solution:
 
         middle = num // 3
         prev, next = middle - 1, middle + 1
-        if (prev + middle + next) == num:
+        if prev + middle + next == num:
             return [prev, middle, next]   
-        elif (middle + 2 * next + 1 ) == num:
+        elif middle + 2 * next + 1  == num:
             return [middle, next, next + 1 ]     
-          
+
         return []      
 
         
