@@ -13,7 +13,7 @@ class Solution:
                 count_paired[f"{sub[0]}.{sub[1]}"] += int(rep)
             count_paired[sub[-1]] += int(rep)
    
-        return [f"{v} {k}" for k, v in count_paired.items()]       
+        return [f"{count} {domain}" for domain, count in count_paired.items()]       
 
 
 
