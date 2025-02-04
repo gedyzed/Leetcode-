@@ -1,21 +1,16 @@
 class Solution:
     def findDuplicate(self, paths: List[str]) -> List[List[str]] :
- 
-        for i, path in enumerate(paths):
-            paths[i] = path.split()
 
-        root_name = defaultdict(list)     
         names = []  
-        for path in paths:
-            root = path[0] + '/' if path[0][-1] != '/' else path[0] 
+        for i in range(len(paths)):
+            path = paths[i].split()
             for j in range(1, len(path)):
-                names.append(root + path[j])
+                names.append(f"{path[0]}/{path[j]}")   
         
         content_name = defaultdict(list)
-
         for i, name in enumerate(names):
-            n = name.split('(')
-            content_name[n[1]].append(n[0])
+            file_name, content = name.split('(')
+            content_name[content].append(file_name)
 
         return [n for n in content_name.values() if len(n) > 1]
 
