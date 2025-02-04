@@ -4,7 +4,7 @@ class Solution:
         nums_count = Counter(nums)
         n = len(nums) // 3
         result = []
-        for k in nums_count:
+        for k in nums_count.keys():
             if nums_count[k] > n:
                 result.append(k)
                 
