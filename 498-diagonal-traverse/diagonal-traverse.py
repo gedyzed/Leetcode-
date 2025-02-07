@@ -1,7 +1,13 @@
-from collections import defaultdict
 
 class Solution:
     def findDiagonalOrder(self, mat):
+
+        def extender(index, matrix, result):
+
+            while index < len(matrix):
+                matrix[index].reverse()
+                result.extend(matrix[index])
+                index += 1
 
         direction = False
         forward_dgl = defaultdict(list)
@@ -20,12 +26,9 @@ class Solution:
             if len(mat[0]) % 2 == 0:
                 direction = not direction       
 
-
         result = []     
         backward_dgl = list(backward_dgl.values())  
         forward_dgl = list(forward_dgl.values())  
-
-        print(forward_dgl,   backward_dgl)
 
         direction = False
         left = right = 0
@@ -40,16 +43,10 @@ class Solution:
                 direction = not direction
                 left += 1
                 
-
         if not direction:
-            while right < len(forward_dgl):
-                forward_dgl[right].reverse()
-                result.extend(forward_dgl[right])
-                right += 1
+            extender(right, forward_dgl, result)
         else:
-            while left < len(backward_dgl):
-                result.extend(backward_dgl[left])
-                left += 1
+            extender(left, backward_dgl, result )
 
         return result   
         
