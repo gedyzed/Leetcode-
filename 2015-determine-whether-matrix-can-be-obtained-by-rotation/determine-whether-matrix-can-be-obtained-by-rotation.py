@@ -10,6 +10,7 @@ class Solution:
         for _ in range(3):
             if mat == target:
                 return True
+                
             transpose(mat)
             mat.reverse()
             if mat == target:
