@@ -7,24 +7,20 @@ class Solution:
             return n * (n - 1)    
             
 
-        product = defaultdict(list)
+        product = defaultdict(int)
         for i in range(len(nums)):
             for j in range(i + 1, len(nums)):
                 p = nums[i] * nums[j]
-                product[p].append((nums[i], nums[j]))
+                product[p] += 1 
 
         count = 0
-        valid_tuples = [v for v in product.values() if len(v) > 1] 
+        valid_tuples = [v for v in product.values() if v > 1] 
         num_fact = {}
         for tuples in valid_tuples:
-            if len(tuples) not in num_fact:
-                num_fact[len(tuples)] = factorial(len(tuples))
-            count += 4 * num_fact[len(tuples)] 
+            if tuples not in num_fact:
+                num_fact[tuples] = factorial(tuples)
+            count += 4 * num_fact[tuples] 
              
         return count    
-
-
-             
-
 
         
