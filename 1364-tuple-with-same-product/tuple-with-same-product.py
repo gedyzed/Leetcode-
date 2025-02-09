@@ -15,10 +15,12 @@ class Solution:
 
         count = 0
         valid_tuples = [v for v in product.values() if len(v) > 1] 
-        print(valid_tuples)
+        num_fact = {}
         for tuples in valid_tuples:
-            count += 4 * factorial(len(tuples)) 
-
+            if len(tuples) not in num_fact:
+                num_fact[len(tuples)] = factorial(len(tuples))
+            count += 4 * num_fact[len(tuples)] 
+             
         return count    
 
 
