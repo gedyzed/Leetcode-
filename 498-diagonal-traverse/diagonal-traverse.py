@@ -2,51 +2,29 @@
 class Solution:
     def findDiagonalOrder(self, mat):
 
-        def extender(index, matrix, result):
-
-            while index < len(matrix):
-                matrix[index].reverse()
-                result.extend(matrix[index])
-                index += 1
-
         direction = False
-        forward_dgl = defaultdict(list)
-        backward_dgl = defaultdict(list)
+        forward_dgl, backward_dgl = defaultdict(list), defaultdict(list)
 
         for row in range(len(mat)):
-            for col in range(len(mat[0])):
-                    
+            for col in range(len(mat[0])):        
                 if not direction:
                     forward_dgl[row + col].append(mat[row][col])
                 else:
-                    backward_dgl[row + col].append(mat[row][col]) 
-                    
+                    backward_dgl[row + col].append(mat[row][col])         
                 direction = not direction
 
             if len(mat[0]) % 2 == 0:
                 direction = not direction       
 
-        result = []     
-        backward_dgl = list(backward_dgl.values())  
-        forward_dgl = list(forward_dgl.values())  
-
-        direction = False
+        result = []   
+        b_dgl, f_dgl  = list(backward_dgl.values()), list(forward_dgl.values())   
         left = right = 0
-        while left < len(backward_dgl) and right < len(forward_dgl):
-            if not direction:
-                forward_dgl[right].reverse()
-                result.extend(forward_dgl[right])
-                direction = not direction
-                right += 1
-            else:
-                result.extend(backward_dgl[left])
-                direction = not direction
-                left += 1
-                
-        if not direction:
-            extender(right, forward_dgl, result)
-        else:
-            extender(left, backward_dgl, result )
-
+        
+        range_ = max(len(f_dgl), len(b_dgl))
+        for i in range(range_): 
+            result.extend(reversed(f_dgl[i]))
+            if i < len(b_dgl):
+                result.extend(b_dgl[i])
+    
         return result   
         
