@@ -1,20 +1,17 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
 
-        height_name = {}
-        for i in range(len(names)):
-            height_name[heights[i]] = names[i]
+        height_name = dict(zip(heights, names))
 
-        for i in range(len(names)):
-            is_sorted = True
-            for j in range(1, len(names)):
-                if heights[j - 1] < heights[j]:
-                    heights[j - 1], heights[j] = heights[j], heights[j - 1]
-                    is_sorted = False
-                    
-            if is_sorted:
-                break        
+        max_, min_ = max(heights), min(heights)
+        countArray = [0] * (max_ - min_ + 1)
 
-        return [height_name[height] for height in heights]          
+        for height in heights:
+            countArray[max_ - height] += 1
 
-        
+        result = []  
+        for i, count in enumerate(countArray):
+            if count:
+                result.extend([max_ - i] * count)  
+
+        return [height_name[height] for height in result]     
