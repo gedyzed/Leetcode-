@@ -13,7 +13,17 @@ class Solution:
             if num not in arr2_count:
                 arr.append(num)
 
-        arr.sort()
+        if len(arr) > 1:
+            max_, min_ = max(arr), min(arr)  
+            countArray = [0] * (max_ - min_ + 1)     
+            for num in arr:
+                countArray[num - min_] += 1
 
-        result.extend(arr)
+            sorted_arr = [] 
+            for i, count in enumerate(countArray):
+                if count:
+                    sorted_arr.extend([i + min_] * count)   
+
+            result.extend(sorted_arr)
+            
         return result
