@@ -7,13 +7,9 @@ class Solution:
 
         while left <= right:
 
-            cur = people[right] + people[left]
-            if people[right] == limit or cur > limit:
-                boats += 1
-            else:  
-                boats += 1   
+            if people[right] + people[left] <= limit:
                 left += 1
-
+            boats += 1
             right -= 1  
 
         return boats    
