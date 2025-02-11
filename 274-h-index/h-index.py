@@ -6,7 +6,7 @@ class Solution:
         h_index = 0
         for i in range(len(citations)):
             if citations[i] >= len(citations) - i:
-                h_index = max(h_index, len(citations) - i)
+                return len(citations) - i
         return h_index        
 
 
