@@ -13,11 +13,7 @@ class Solution:
             if num not in arr2_count:
                 arr.append(num)
 
-        for i in range(1, len(arr)):
-            j = i
-            while j > 0 and arr[j] < arr[j - 1]:
-                arr[j], arr[j - 1] = arr[j - 1], arr[j]
-                j -= 1
+        arr.sort()
 
         result.extend(arr)
         return result
