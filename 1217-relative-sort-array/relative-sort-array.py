@@ -1,22 +1,23 @@
 class Solution:
     def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        
-        count = Counter(arr1)
-        arr,ans = [], [] 
-        left = right = 0
+
+        arr1_count = Counter(arr1)
+        arr2_count = defaultdict(int)
+        result = []
+        for num in arr2:
+            result.extend([num] * arr1_count[num])
+            arr2_count[num] += 1     
+
+        arr = []
         for num in arr1:
-            if num not in arr2:
+            if num not in arr2_count:
                 arr.append(num)
-        arr.sort()        
 
-        while left < len(arr2):
-            if count[arr2[left]] > 0:
-                ans.append(arr2[left]) 
-                count[arr2[left]] -= 1
-            else: left += 1 
+        for i in range(1, len(arr)):
+            j = i
+            while j > 0 and arr[j] < arr[j - 1]:
+                arr[j], arr[j - 1] = arr[j - 1], arr[j]
+                j -= 1
 
-        for num in arr:
-            ans.append(num)
-              
-        return ans
-        
+        result.extend(arr)
+        return result
