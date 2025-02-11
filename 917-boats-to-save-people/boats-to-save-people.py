@@ -6,16 +6,16 @@ class Solution:
         people.sort()
 
         while left <= right:
-            if people[right] == limit:
-                boats += 1
-            elif people[right] + people[left] > limit:
+
+            cur = people[right] + people[left]
+            if people[right] == limit or cur > limit:
                 boats += 1
             else:  
                 boats += 1   
                 left += 1
-                
+
             right -= 1  
 
-        return boats     
+        return boats    
 
   
