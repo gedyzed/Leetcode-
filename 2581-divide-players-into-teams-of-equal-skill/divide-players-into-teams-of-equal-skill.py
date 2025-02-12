@@ -1,22 +1,20 @@
 class Solution:
     def dividePlayers(self, skill: List[int]) -> int:
+
+        skill_sum =  ( sum(skill) * 2 ) // len(skill)
+        skill.sort()
+        left, right = 0, len(skill) - 1
+
+        result = 0
+        while left < right:
+            if skill[left] + skill[right] != skill_sum:
+                return -1
+
+            result += skill[left] * skill[right]
+            left += 1
+            right -= 1
+
+        return result        
+ 
+
         
-        n = len(skill)
-        totalSum = sum(skill)
-        skillSum = totalSum * 2 // n
-        count = defaultdict(int)
-        pair_count = chemistry = 0
-
-        for i in range(n):
-            x = skillSum - skill[i]
-
-            if x in count and count[x] > 0:   
-                chemistry += x * skill[i]
-                pair_count += 1
-                count[x] -= 1
-            else:
-                count[skill[i]] += 1   
-
-        if pair_count != n / 2:
-            return -1
-        return chemistry            
