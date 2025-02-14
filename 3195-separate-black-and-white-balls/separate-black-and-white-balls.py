@@ -5,7 +5,7 @@ class Solution:
         for i in range(len(s)):
             if s[i] == '1':
                 ones += 1
-            elif ones and s[i] == '0':
+            else:
                 swaps += ones
                 
         return swaps         
