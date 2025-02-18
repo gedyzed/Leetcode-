@@ -7,10 +7,7 @@ class Solution:
         for right in range(len(nums)):
             presum += nums[right]
             x = presum % k
-    
-            if x in mod_hash:
-                count += mod_hash[x]  
-
+            count += mod_hash[x]
             mod_hash[presum % k] += 1  
 
         return count     
