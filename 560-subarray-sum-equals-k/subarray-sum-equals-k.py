@@ -3,16 +3,11 @@ class Solution:
 
         left = count = presum = 0
         sum_hash = defaultdict(int)
+        sum_hash[0] = 1
         for right in range(len(nums)):
+            
             presum += nums[right]
-            x = presum - k
-
-            if x in sum_hash:
-                count += sum_hash[x]
-
-            if presum == k:
-                count += 1     
-
+            count += sum_hash[presum - k]
             sum_hash[presum] += 1
 
         return count    
