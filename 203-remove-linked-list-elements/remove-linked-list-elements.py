@@ -9,10 +9,11 @@ class Solution:
         dummy = ListNode(0, head)
         current = dummy
 
-        while current:
-            if current.next and current.next.val == val:
+        while current.next:
+            if current.next.val == val:
                 current.next = current.next.next
             else:
                 current = current.next
+                
         return dummy.next   
 
