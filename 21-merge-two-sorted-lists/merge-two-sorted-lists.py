@@ -6,12 +6,6 @@
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
 
-        def outBounds(temp, curr):
-            while temp:
-                curr.next = temp
-                temp = temp.next
-                curr = curr.next
-
         temp1, temp2 = list1, list2
         dummy = ListNode()
         curr = dummy
@@ -22,11 +16,13 @@ class Solution:
                 temp1 = temp1.next
             else:
                 curr.next = temp2
-                temp2 = temp2.next          
+                temp2 = temp2.next  
+                        
             curr = curr.next
+
         if temp1:
-            outBounds(temp1,curr) 
+           curr.next = temp1
         else:
-            outBounds(temp2, curr)   
+           curr.next = temp2 
 
         return dummy.next             
