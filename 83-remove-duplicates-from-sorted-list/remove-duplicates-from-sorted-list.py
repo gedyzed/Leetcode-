@@ -6,18 +6,18 @@
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
-        temp1 = head if head != None else None
-        temp2 = head.next if head != None else None
+        dummy = ListNode(-101, head)
+        left, right = dummy, dummy.next
 
-        while temp2 != None:
-            if temp1.val == temp2.val:
-                temp1.next = temp2.next
+        while right:
+            if left.val == right.val:
+                left.next = right.next
             else:
-                temp1 = temp2  
+                left = right  
 
-            temp2 = temp2.next       
+            right = right.next     
 
-        return head    
+        return dummy.next    
             
 
 
