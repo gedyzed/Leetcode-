@@ -9,22 +9,29 @@ class LRUCache:
 
     def __init__(self, capacity: int):
         self.capacity = capacity
+        self.pointers = {}
+
+        #dummy nodes 
         self.head = Node()
         self.tail = Node()
+
         self.head.next = self.tail
         self.tail.prev = self.head
-        self.pointers = {}
 
 
     def get(self, key: int) -> int:
-        if key in self.pointers:
-            node = self.pointers[key]
-            self.remove(node)
-            self.insert(node)
-            return node.val
-        return -1    
+
+        if key not in self.pointers:
+            return -1
+
+        node = self.pointers[key]
+        self.remove(node)
+        self.insert(node)
+        return node.val
+          
 
     def remove(self, node):
+        
         prev_node = node.prev
         next_node = node.next
         prev_node.next = next_node
