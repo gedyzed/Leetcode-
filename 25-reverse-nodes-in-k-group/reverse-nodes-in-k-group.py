@@ -29,13 +29,6 @@ class Solution:
         last = head
         new_head = None
 
-        # First, check if there are at least k nodes remaining
-        temp = last
-        for _ in range(k):
-            if not temp:
-                return head  # Not enough nodes to reverse
-            temp = temp.next
-
         while last:
             count += 1
 
