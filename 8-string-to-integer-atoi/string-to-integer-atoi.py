@@ -6,7 +6,7 @@ class Solution:
 
         result, s = [], s.strip()  
 
-        for i, char in enumerate(s):
+        for char in s:
             if char in oper and not result:  
                 result.append(char)
             elif char.isdigit():
