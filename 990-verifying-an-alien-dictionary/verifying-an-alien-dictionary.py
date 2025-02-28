@@ -1,10 +1,9 @@
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
 
-        order_, index = {}, 0
-        for char in order:
+        order_ = {}
+        for index,  char in enumerate(order):
             order_[char] = index
-            index += 1
 
         for i in range(len(words) - 1):
             for j in range(len(words[i])):
@@ -18,8 +17,4 @@ class Solution:
                     break    
                   
         return True                       
-
-
-
-                
-        
+     
