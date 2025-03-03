@@ -12,10 +12,8 @@ class Solution:
             else:
                 right.append(num)
 
-        result = []        
-        result.extend(left) 
-        result.extend([pivot] * count)
-        result.extend(right)  
-        
-        return result
+        left.extend([pivot] * count)
+        left.extend(right)  
+
+        return left
                 
