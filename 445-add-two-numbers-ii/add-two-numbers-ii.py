@@ -9,11 +9,8 @@ class Solution:
         def reverse(l):
             prev = None
             while l:
-                temp = l
-                l = l.next
-
-                temp.next = prev
-                prev = temp
+                temp, l = l, l.next
+                temp.next, prev = prev, temp
 
             return prev     
 
