@@ -4,8 +4,7 @@ class Solution:
         city = [(a - b, a, b) for a, b in costs]
         city.sort() 
     
-        n = len(costs) // 2
-        ans = 0
+        n, ans = len(costs) // 2, 0     
         for i in range(len(city)):
             if i < n:
                 ans += city[i][1]
@@ -14,16 +13,5 @@ class Solution:
 
         return ans          
 
-
-        
-
-
-
-
-
-       
     
-  
-
-      
         
