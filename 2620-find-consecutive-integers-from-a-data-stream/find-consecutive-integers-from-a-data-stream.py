@@ -2,23 +2,18 @@ class DataStream:
 
     def __init__(self, value: int, k: int):
 
-        self.queue = deque()
+        self.count = 0
         self.k = k 
         self.value = value
 
     def consec(self, num: int) -> bool:
 
         if num != self.value:
-            self.queue = deque()
+            self.count = 0
             return False
 
-        self.queue.append(num)
-        return len(self.queue) >= self.k      
-
-
-           
-        
-
+        self.count += 1
+        return self.count >= self.k      
 
 # Your DataStream object will be instantiated and called as such:
 # obj = DataStream(value, k)
