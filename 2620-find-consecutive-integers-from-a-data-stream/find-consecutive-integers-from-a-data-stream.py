@@ -1,24 +1,22 @@
 class DataStream:
 
     def __init__(self, value: int, k: int):
+
         self.queue = deque()
+        self.k = k 
         self.value = value
-        self.k = k
-        self.count = 0
-        
+
     def consec(self, num: int) -> bool:
-        if len(self.queue) == self.k:
-            if self.queue[0] == self.value:
-                self.count -= 1
-            self.queue.popleft()   
-        self.queue.append(num)   
-        if num == self.value:
-            self.count += 1
 
-        return self.count == self.k      
+        if num != self.value:
+            self.queue = deque()
+            return False
 
-                
-        
+        self.queue.append(num)
+        return len(self.queue) >= self.k      
+
+
+           
         
 
 
