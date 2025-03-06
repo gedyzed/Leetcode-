@@ -2,14 +2,15 @@ class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
 
         stack, n = [], len(temperatures)
-        value_num = defaultdict(int)
+        daily_temp = [0] * n
+
         for i, temp in enumerate(temperatures):
             while stack and temp > temperatures[stack[-1]]:
-                value = stack.pop()
-                value_num[value] = i - value
+                idx = stack.pop()
+                daily_temp[idx] = i - idx
                 
             stack.append(i)  
 
-        return [value_num[i] if value_num[i] else 0 for i in range(n)]       
+        return daily_temp      
 
         
