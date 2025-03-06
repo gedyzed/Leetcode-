@@ -3,7 +3,8 @@ class Solution:
 
    
         total_rabbits = 0
-        for x, freq in Counter(answers).items():
+        count = Counter(answers)
+        for x, freq in count.items():
             group_size = x + 1
             groups = math.ceil(freq / group_size)
             total_rabbits += groups * group_size
