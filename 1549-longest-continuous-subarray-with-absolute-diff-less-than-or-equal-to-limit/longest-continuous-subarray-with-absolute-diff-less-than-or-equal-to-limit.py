@@ -22,9 +22,8 @@ class Solution:
                 if value == min_queue[0]:
                     min_queue.popleft()
                 left += 1
-
-            if max_queue and min_queue:
-                max_len = max(max_len, right - left + 1)
+  
+            max_len = max(max_len, right - left + 1)
 
         return max_len           
 
