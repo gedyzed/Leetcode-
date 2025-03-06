@@ -4,8 +4,6 @@ class Solution:
         max_queue = deque()
         min_queue = deque()
 
-        3, 4, 2, 1
-
         left = max_len = 0
         for right in range(len(nums)):
             while max_queue and nums[right] > max_queue[-1]:
