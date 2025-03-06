@@ -15,7 +15,7 @@ class Solution:
             max_queue.append(nums[right])  
             min_queue.append(nums[right])
 
-            while max_queue and  min_queue and abs(max_queue[0] - min_queue[0]) > limit:
+            if max_queue[0] - min_queue[0] > limit:
                 value = nums[left]
                 if value == max_queue[0]:
                     max_queue.popleft()
