@@ -23,7 +23,6 @@ class MyCircularDeque:
         return True    
 
     def insertLast(self, value: int) -> bool:
-        print(self.queue)
 
         if self.isFull():
             return False
@@ -64,6 +63,7 @@ class MyCircularDeque:
         return True
         
     def getFront(self) -> int:
+
         if self.isEmpty():
             return -1
         return self.queue[self.front]    
@@ -72,10 +72,8 @@ class MyCircularDeque:
 
         if self.isEmpty():
             return -1
-
         return self.queue[self.rear]    
         
-
     def isEmpty(self) -> bool:
         return not self.count
     
