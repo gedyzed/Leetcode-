@@ -3,12 +3,10 @@ class Solution:
 
 
         happiness.sort(reverse=True)
-        happiness_sum = decrement = 0
+        happiness_sum = 0
 
         for i in range(k):
-
-            happiness_sum += max(happiness[i] - decrement, 0)
-            decrement += 1
+            happiness_sum += max(happiness[i] - i, 0)
 
         return happiness_sum    
 
