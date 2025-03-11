@@ -3,7 +3,7 @@ class Solution:
 
 
         happiness.sort(reverse=True)
-        happiness_sum = decrement = i = 0
+        happiness_sum = decrement = 0
 
         for i in range(k):
 
