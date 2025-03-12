@@ -4,17 +4,13 @@ class Solution:
         if not rowIndex:
             return [1]
 
-        result = []
-        res = [1, 1]
-        for i in range(rowIndex):
-        
-            for j in range(1, len(result)):
-                res[j] = result[j] + result[j - 1]
-            
-            result = res    
-            res = [1] * (len(result) + 1)
-
-        return result        
+        previous_r = self.getRow(rowIndex - 1)
+        res = [1]
+        for j in range(1, len(previous_r)):
+            res.append(previous_r[j] + previous_r[j - 1])
+        res.append(1)    
+    
+        return res        
 
 
       
