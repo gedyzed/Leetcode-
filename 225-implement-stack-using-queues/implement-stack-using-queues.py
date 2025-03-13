@@ -4,8 +4,11 @@ class MyStack:
         self.queue = deque()
         
     def push(self, x: int) -> None:
-        self.queue.appendleft(x)
-  
+
+        self.queue.append(x)
+        for _ in range(len(self.queue) - 1):
+            self.queue.append(self.queue.popleft())
+
     def pop(self) -> int:
         return self.queue.popleft()
 
