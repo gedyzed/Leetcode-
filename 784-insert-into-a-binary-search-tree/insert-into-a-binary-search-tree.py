@@ -10,18 +10,11 @@ class Solution:
 
         if not root:
             return TreeNode(val)
-
-        if not root.left and root.val >= val:
-            root.left = TreeNode(val) 
-            return root
-        if not root.right and root.val < val:
-            root.right = TreeNode(val)
-            return root
-
+            
         if val <= root.val:
-            self.insertIntoBST(root.left, val)      
+            root.left = self.insertIntoBST(root.left, val)      
         else:
-            self.insertIntoBST(root.right, val)    
+            root.right = self.insertIntoBST(root.right, val)    
 
         return root       
         
