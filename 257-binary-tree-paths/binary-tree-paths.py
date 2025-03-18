@@ -12,6 +12,7 @@ class Solution:
 
             if not root:
                 return 
+   
             r = copy.deepcopy(res)
             r.append(f"{root.val}")
             if not root.left and not root.right:
@@ -20,13 +21,8 @@ class Solution:
 
             paths(root.left, r)
             paths(root.right, r)
-             
-        
-        if not root.left and not root.right:
-            return [str(root.val)]
-
-        paths(root.left, [str(root.val)])
-        paths(root.right, [str(root.val)])
+                     
+        paths(root, [])
         return result      
 
 
