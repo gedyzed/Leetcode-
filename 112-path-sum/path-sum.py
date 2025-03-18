@@ -11,18 +11,15 @@ class Solution:
         def pathSum(root, sum, tg):
 
             if not root:
-                return 
+                return False
 
             sum += root.val
             if sum == tg and not root.right and not root.left:
-                result.append(sum)
                 return True
 
-            pathSum(root.left, sum, tg)
-            pathSum(root.right, sum, tg) 
+            return pathSum(root.right, sum, tg) or pathSum(root.left, sum, tg)
 
-        pathSum(root, 0, targetSum) 
-        return len(result) > 0          
+        return pathSum(root, 0, targetSum)   
 
 
         
