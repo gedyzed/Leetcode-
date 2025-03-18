@@ -6,18 +6,17 @@
 #         self.right = right
 class Solution:
     def sumEvenGrandparent(self, root: Optional[TreeNode]) -> int:
-
-        result = []
+        self.total = 0
         def evenSum(node, parent, gp):
 
             if not node:
                 return 
 
             if gp and not (gp.val % 2):
-                result.append(node.val)   
+                self.total += node.val
 
             evenSum(node.left, node, parent)    
             evenSum(node.right, node, parent)
 
         evenSum(root, None, None)
-        return sum(result)      
+        return self.total      
