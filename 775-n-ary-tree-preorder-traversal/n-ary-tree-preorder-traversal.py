@@ -9,16 +9,15 @@ class Node:
 class Solution:
     
     def preorder(self, root: 'Node') -> List[int]:
-        result = []
 
         def preOrder(root):
 
             if not root:
-                return 
+                return []
 
-            result.append(root.val)
+            result= [root.val]
             for child in root.children:
-                preOrder(child)
+                result.extend(preOrder(child))
                 
             return result  
 
