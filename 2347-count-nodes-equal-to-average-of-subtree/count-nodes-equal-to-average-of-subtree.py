@@ -12,13 +12,15 @@ class Solution:
 
             n, sum1 = average(root.left)  
             m, sum2 = average(root.right) 
-
-            n, sum1 = n + m + 1, sum1 + sum2 + root.val
-            avg = sum1 // n if n > 0 else 0
+            
+            n =  n + m + 1
+            sum1 = sum1 + sum2 + root.val
+            avg = sum1 // n 
+            
             if root.val == avg:
                 self.count += 1
 
-            return n , sum1
+            return n, sum1
 
         self.count = 0  
         average(root)  
