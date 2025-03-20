@@ -5,19 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def __init__(self):
+        self.max = 0
+        
     def bstToGst(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return 
 
-        def dfs(root):
-            if not root:
-                return 
+        self.bstToGst(root.right)
+        self.max += root.val
+        root.val = self.max
+        self.bstToGst(root.left) 
 
-            dfs(root.right)
-            self.max += root.val
-            root.val = self.max
-            dfs(root.left) 
-
-        self.max = 0    
-        dfs(root)    
         return root     
 
 
