@@ -6,7 +6,7 @@ class Solution:
             if idx >= len(cookies):
                 self.min = min(self.min, max(childs))
                 return 
-
+                
             if self.min < max(childs):
                 return    
 
@@ -14,6 +14,9 @@ class Solution:
                 childs[i] += cookies[idx]
                 backtrack(idx + 1)
                 childs[i] -= cookies[idx]
+
+                if not childs[i]:
+                    break
 
         
         self.min = float('inf')
