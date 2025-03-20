@@ -7,8 +7,8 @@ class Solution:
                 self.min = min(self.min, max(childs))
                 return 
                 
-            if self.min < max(childs):
-                return    
+            # if self.min < max(childs):
+            #     return    
 
             for i in range(k):
                 childs[i] += cookies[idx]
