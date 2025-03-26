@@ -5,6 +5,9 @@ class Solution:
         
             load, day = 0, 1
             for weight in weights:
+                if weight > capacity:
+                    return False
+                    
                 if load + weight <= capacity:
                     load += weight
                 else:
