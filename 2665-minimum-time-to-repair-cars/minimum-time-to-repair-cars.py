@@ -6,10 +6,9 @@ class Solution:
             num_cars = 0
             for rank in ranks: 
                 num_cars += int(sqrt(time / rank )) 
-                
             return num_cars >= cars
 
-        left, right = 1, max(ranks) * cars * cars
+        left, right = 1, min(ranks) * cars * cars
         while left <= right:
             mid = (left + right ) // 2
             if validate(mid, cars):
