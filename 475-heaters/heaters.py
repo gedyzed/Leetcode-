@@ -10,11 +10,11 @@ class Solution:
 
                 if i < len(heaters):
                     num_h += 1    
-                        
+
             return num_h >= len(houses)            
 
         houses, heaters = sorted(houses), sorted(heaters)
-        low, high = 0, max(houses[-1], heaters[-1])
+        low, high = 0, max(abs(houses[-1] - heaters[0]), abs(heaters[-1] - houses[0]))
         while low <= high:
             mid = (low + high) // 2
             if validate(mid):
