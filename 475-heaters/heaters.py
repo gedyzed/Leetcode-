@@ -1,26 +1,20 @@
 class Solution:
     def findRadius(self, houses: List[int], heaters: List[int]) -> int:
 
-        def validate(r):
+        houses.sort()
+        heaters.sort()
+        min_rad = 0
 
-            num_h = i = 0
-            for house in houses:
-                while i < len(heaters) and abs(house - heaters[i]) > r:
-                    i += 1
+        for house in houses:
 
-                if i < len(heaters):
-                    num_h += 1    
+            idx = bisect_left(heaters, house)
+            left_dist = float("inf") if idx == 0 else abs(house - heaters[idx - 1])
+            right_dist = float("inf") if len(heaters) == idx else abs(heaters[idx] - house)
 
-            return num_h >= len(houses)            
+            min_rad = max(min_rad, min(left_dist, right_dist))
+        return min_rad
+            
 
-        houses, heaters = sorted(houses), sorted(heaters)
-        low, high = 0, max(abs(houses[-1] - heaters[0]), abs(heaters[-1] - houses[0]))
-        while low <= high:
-            mid = (low + high) // 2
-            if validate(mid):
-                high = mid - 1
-            else:
-                low = mid + 1   
 
-        return low        
+
         
