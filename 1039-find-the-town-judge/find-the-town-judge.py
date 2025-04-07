@@ -7,15 +7,16 @@ class Solution:
         trusts = set()
         not_trust = defaultdict(int)
         for p1, p2 in trust:
-            trusts.add(p1)
 
+            trusts.add(p1)
             if p1 in not_trust:
                 not_trust.pop(p1)
-            
             if p2 not in trusts:
                 not_trust[p2] += 1
 
-        judge, count = list(not_trust.keys()), list(not_trust.values())
+        judge = list(not_trust.keys())
+        count = list(not_trust.values())
+        
         if not judge:
             return - 1
         return judge[0] if count[0] == n - 1 else -1
