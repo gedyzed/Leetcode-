@@ -8,8 +8,7 @@ class Solution:
             visited.add(node)
             for ngr in graph[node]:
                 if ngr not in visited:
-                    found = dfs(ngr)    
-                    if found:
+                    if dfs(ngr):    
                         return True
 
             return False  
