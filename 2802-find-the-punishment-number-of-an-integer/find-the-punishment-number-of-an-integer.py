@@ -4,16 +4,16 @@ class Solution:
         def backtrack(s, idx, target):
 
             if idx >= len(s):
-                return sum(curr) == target
+                return self.sum == target
 
             for i in range(idx, len(s)):
                 val = int(s[idx: i + 1])
-                if curr and curr[-1] + val > target:
+                if self.sum + val > target:
                     continue
-                curr.append(val) 
+                self.sum += val
                 if backtrack(s, i + 1, target):
                     return True
-                curr.pop()    
+                self.sum -= val  
 
             return False            
                 
@@ -21,7 +21,7 @@ class Solution:
         squares = [(i, str(i * i)) for i in range(1, n + 1)]
         ans = 0
         for target, square in squares:
-            curr = []
+            self.sum = 0
             if backtrack(square, 0, target):
                 ans += target * target
                 
