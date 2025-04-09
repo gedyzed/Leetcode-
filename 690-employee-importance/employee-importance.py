@@ -12,7 +12,7 @@ class Solution:
 
         def dfs(employee, visited):
     
-            imp[0] += employee.importance
+            self.imp += employee.importance
             visited.add(employee.id)
 
             for id in employee.subordinates:
@@ -20,14 +20,13 @@ class Solution:
                     visited.add(id)
                     dfs(graph[id], visited)
 
-        imp = [0]
         graph = defaultdict(list)
         for employee in employees:
             graph[employee.id] = employee
 
+        self.imp = 0
         dfs(graph[id], set())
-  
-        return imp[0]   
+        return self.imp   
      
        
                  
