@@ -17,15 +17,14 @@ class Solution:
 
             return False            
                 
-
-        squares = [(i, str(i * i)) for i in range(1, n + 1)]
         ans = 0
-        for target, square in squares:
+        for i in range(1, n + 1):
             self.sum = 0
-            if backtrack(square, 0, target):
-                ans += target * target
-                
+            if backtrack(str(i * i), 0, i):
+                ans += i * i
+
         return ans        
+
 
 
 
