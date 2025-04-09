@@ -1,20 +1,21 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-
+        WHITE, GRAY, BLACK = 0, 1, 2
+         
         def dfs(node):
 
-            if colors[node] == 1:
+            if colors[node] == GRAY:
                 return False
 
-            if colors[node] == 2:
+            if colors[node] == BLACK:
                 return True  
 
-            colors[node] = 1
+            colors[node] = GRAY
             for neighbour in graph[node]:
                 if not dfs(neighbour):
                     return False
 
-            colors[node] = 2
+            colors[node] = BLACK
             return True      
    
 
@@ -24,7 +25,7 @@ class Solution:
 
         colors = defaultdict(int)
         for course in range(numCourses):
-            if not colors[course]:
+            if colors[course] == WHITE:
                 if not dfs(course):
                     return False
 
