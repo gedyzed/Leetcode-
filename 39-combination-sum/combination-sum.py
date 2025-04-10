@@ -9,23 +9,17 @@ class Solution:
             if self.sum >= target:
                 return
 
-            for i in range(len(candidates)):
+            for i in range(idx, len(candidates)):
                 res.append(candidates[i])    
                 self.sum += res[-1]  
-                backtrack(i + 1, res)
+                backtrack(idx, res)
+                idx += 1
                 self.sum -= res.pop()    
 
         self.sum = 0
         result = []
         backtrack(0, [])
-
-        ans = []
-        for r in result:
-            r = sorted(r)
-            if r not in ans:
-                ans.append(r)
-
-        return ans
+        return result
 
 
 
