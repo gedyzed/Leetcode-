@@ -7,14 +7,16 @@ class Solution:
 
         def dfs(row, col):
 
-            self.cell += 1
+            area = 1
             visited.add((row, col))   
             for dr, dc in directions:
                 new_r = row + dr
                 new_c = col + dc
                 
                 if inbound(new_r, new_c) and grid[new_r][new_c] and (new_r, new_c) not in visited:
-                    dfs(new_r, new_c) 
+                    area += dfs(new_r, new_c) 
+
+            return area        
                     
 
         visited = set()
@@ -22,10 +24,8 @@ class Solution:
         for row in range(len(grid)):
             for col in range(len(grid[0])):
                 if grid[row][col] and (row, col) not in visited:
-                    self.cell = 0
-                    dfs(row, col)
-                    print(self.cell)
-                    ans = max(ans, self.cell)
+                    area = dfs(row, col)
+                    ans = max(ans, area)
 
         return ans            
                                    
