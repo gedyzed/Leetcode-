@@ -1,35 +1,18 @@
 class Solution:
     def findChampion(self, n: int, edges: List[List[int]]) -> int:
 
-
-        vert = set() # nodes 
-        adj_list = defaultdict(list)
+        degree = defaultdict(int) 
         for a, b in edges:
-            adj_list[a].append(b)
-            vert.add(a)
-            vert.add(b)
+            degree[b] += 1 
 
-        counter = defaultdict(int) 
-        for a, nodes in adj_list.items():
-            counter[a] += 0
-            for node in nodes:
-                counter[node] += 1
+        res = []   
+        for num in range(n):
+            if not degree[num]:
+                res.append(num) 
 
-        min_count = n
-        for v in counter.values():
-            min_count = min(min_count, v)
-        
-        res = []
-        for node, cnt in counter.items():
-            if cnt == min_count:
-                res.append(node)            
+        return res[0] if len(res) == 1 else -1           
 
-        if (len(vert) != n and n > 1) or len(res) > 1:
-            return -1
-        elif not res and n == 1:
-            return 0  
-        return res[0]               
-             
+ 
 
 
      
