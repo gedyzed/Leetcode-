@@ -15,10 +15,10 @@ class Solution:
             for node in nodes:
                 counter[node] += 1
 
-        counts = list(counter.values())
-        if counts:
-            min_count = min(counts)
-
+        min_count = n
+        for v in counter.values():
+            min_count = min(min_count, v)
+        
         res = []
         for node, cnt in counter.items():
             if cnt == min_count:
