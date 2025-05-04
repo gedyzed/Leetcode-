@@ -1,15 +1,22 @@
 class Solution:
     def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
 
-        result = []
-        for start, end in ranges:
-            for num in range(start, end + 1):
-                result.append(num)
+        set1 = set()
+        set2 = set()
 
-        nums2 = set(result)
-        nums1 = set([num for  num in range(left, right + 1)])        
+        for s, e in ranges:
+            for i in range(s, e + 1):
+                set1.add(i)
 
-        return nums1 <=  nums2
+        for i in range(left, right + 1):
+            set2.add(i) 
+
+        return set2 <= set1            
+        
+     
+
+
+      
 
 
 
