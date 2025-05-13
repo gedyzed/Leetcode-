@@ -5,11 +5,9 @@ class Solution:
         for num in range(n + 1):
             count = 0
             while num: 
-                mod = num % 2 
-                if mod:
-                    count += 1
-                num //= 2  
-            
+                mod = num & 1
+                count += mod == 1
+                num >>= 1 
             res.append(count)  
 
         return res       
