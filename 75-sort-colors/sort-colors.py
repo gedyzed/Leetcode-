@@ -3,8 +3,13 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        for i in range(1, len(nums)):
-            j = i
-            while j > 0 and nums[j] < nums[j - 1]:
-                nums[j - 1], nums[j] = nums[j], nums[j - 1]
-                j -= 1
+        count = Counter(nums)
+        result = []
+        for i in range(3):
+            result.extend([i] * count[i])
+
+        for i in range(len(nums)):
+            nums[i] = result[i]
+
+        return nums     
+        
