@@ -1,18 +1,29 @@
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
+
         n = len(s)
-        ans = []
+        def backtrack(idx):
 
-        for mask in range(1 << n):
-            path = []
-            for i in range(n):
-                if mask >> i & 1:
-                    path.append(s[i])
-                else:
-                    path.append(s[i].swapcase())
+            if len(res) == n:
+                result.append("".join(res))
+                return 
+    
+            res.append(s[idx])
+            backtrack(idx + 1)
+            res.pop()
 
-            ans.append("".join(path))
+            if s[idx].isalpha():
+                res.append(s[idx].swapcase())
+                backtrack(idx + 1)
+                res.pop() 
 
-        return list(set(ans))             
+        result, res = [], []
+        backtrack(0)
+        return result    
+
+
+          
+
+
         
 
