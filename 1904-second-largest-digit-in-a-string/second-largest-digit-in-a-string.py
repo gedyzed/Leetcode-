@@ -5,11 +5,16 @@ class Solution:
         nums = []
         for char in s:
             if char.isdigit():
-                heappush(nums, int(char))
+                nums.append(int(char))
 
-        res = nlargest(2, nums)
-        print(res)
-        return res[-1] if len(res) > 1 else -1     
+        if len(nums) <= 1:
+            return -1 
+
+        nums.sort()    
+        return nums[-2]  
+           
+
+         
 
 
         
