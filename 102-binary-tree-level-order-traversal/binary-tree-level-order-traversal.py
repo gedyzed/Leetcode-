@@ -7,18 +7,31 @@
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
 
-        def dfs(node, level):
+        def bfs(root):
+            
+            if not root:
+                return []
 
-            if not node:
-                return 
+            res = defaultdict(list)
+            queue = deque([(root, 0)])
+            while queue: 
+                node, lvl  = queue.popleft() 
+                res[lvl].append(node.val)
+                if node.left:
+                    queue.append((node.left, lvl + 1)) 
+                if node.right:
+                    queue.append((node.right, lvl + 1))  
+                
+            return list(res.values())
+        return bfs(root)    
 
-            levels[level].append(node.val)
-            dfs(node.left, level + 1)
-            dfs(node.right, level + 1)
+                
 
-        levels = defaultdict(list)
-        dfs(root, 0)
-        return list(levels.values())    
+
+
+
+
+   
 
 
                  
