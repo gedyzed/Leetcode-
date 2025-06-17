@@ -7,37 +7,24 @@
 class Solution:
     def isUnivalTree(self, root: Optional[TreeNode]) -> bool:
 
-        def bfs(node):
-
-            if not node:
-                return True 
-            
-            if self.value != node.val:
-                return False
-
-            queue = deque([node])
-            visited = set([node])
-
+        def bfs(root):
+            queue = deque([root])
+            visited = set()
             while queue:
-                queue.popleft()
-
-                if node.left not in visited:
-                    visited.add(node.left)
-                    if not bfs(node.left):
+                node = queue.popleft()
+                if node:
+                    if visited and node.val not in visited:
                         return False
+                    visited.add(node.val)      
+                    queue.append(node.left)
+                    queue.append(node.right)  
 
-                if node.right not in visited:
-                    visited.add(node.right)
-                    if not bfs(node.right):
-                        return False
+            return True
+        return bfs(root)    
 
-            return True            
 
-        self.value = root.val
-        if not bfs(root):
-            return False
+            
 
-        return True
 
 
 
