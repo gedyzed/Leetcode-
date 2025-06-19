@@ -15,17 +15,16 @@ class Solution:
                     queue.append((r, c, 0))
                     visited.add((r, c))
             
-        while queue:
-            for _ in range(len(queue)):
-                row, col, length = queue.popleft()
-                if ans[row][col] == 0 and mat[row][col]:
-                    ans[row][col] = length
+        while queue: 
+            row, col, length = queue.popleft()
+            if ans[row][col] == 0 and mat[row][col]:
+                ans[row][col] = length
 
-                for dr, dc in directions:
-                    r, c = dr + row, dc + col
-                    if inbound(r, c) and (r, c) not in visited:
-                        visited.add((r, c))
-                        queue.append((r, c, length + 1))    
+            for dr, dc in directions:
+                r, c = dr + row, dc + col
+                if inbound(r, c) and (r, c) not in visited:
+                    visited.add((r, c))
+                    queue.append((r, c, length + 1))    
 
         return ans                 
 
