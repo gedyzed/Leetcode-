@@ -1,33 +1,38 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
 
+        colors = defaultdict(int)
+        def dfs(node):
 
-        graph_modified = defaultdict(list) 
-        outgoing = defaultdict(int)
-        for i, nei in enumerate(graph):
-            for node in nei:
-                graph_modified[node].append(i)
-                outgoing[i] += 1
+            for nei in graph[node]:
+                if colors[nei] == 1:
+                    return True
 
-        queue = deque()
-        for node, nei in enumerate(graph):
-            if not nei:
-                queue.append(node)
+                if colors[nei] == 0: 
+                    colors[nei] = 1
+                    if dfs(nei):
+                        return True
+
+            ans.append(node) 
+            colors[node] = 2  
+            return False     
 
         ans = []
-        while queue:
-            node = queue.popleft()
-            ans.append(node)
-            for nei in graph_modified[node]:
-                outgoing[nei] -= 1
-                if not outgoing[nei]:
-                    queue.append(nei) 
+        for node in range(len(graph)):
+            if not colors[node]:
+                colors[node] == 1
+                dfs(node)
+              
 
-        return sorted(ans)                   
+        return sorted(ans)        
+                
+                
+            
+
+
+
+
+
+                         
                  
-
-
-
-
-
-        
+       
