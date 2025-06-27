@@ -3,36 +3,23 @@ class Solution:
 
         graph = defaultdict(list)
         incoming = defaultdict(int)
-        for course, pre in prerequisites:
-            graph[pre].append(course)
-            incoming[course] += 1
 
-        queue = deque()
-        res = []
+        for a, b in prerequisites:
+            graph[a].append(b)
+            incoming[b] += 1 
 
-        for course in range(numCourses):
-            if not incoming[course]:
-                queue.append(course)
+        print(incoming)    
 
+        queue = deque([node for node in range(numCourses) if not incoming[node]])
+        ans = []
         while queue:
-            course = queue.popleft()
-            res.append(course)
-
-            for nei in graph[course]:
+            node = queue.popleft()  
+            ans.append(node) 
+            for nei in graph[node]:
                 incoming[nei] -= 1
                 if not incoming[nei]:
                     queue.append(nei)
-                    
-        if len(res) == numCourses:
-            return res
-
-        return []                
-
-
-
-
-
-   
-
-
         
+        return ans[::-1] if len(ans) == numCourses else []               
+
+           
