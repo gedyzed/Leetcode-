@@ -1,39 +1,33 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
 
+
+        graph_modified = defaultdict(list) 
         outgoing = defaultdict(int)
-        graph_ = defaultdict(list)
-        for i, nodes in enumerate(graph):
-            outgoing[i] += len(nodes)
-            for node in nodes:
-                graph_[node].append(i)
-            
-        queue = deque() 
-        res = [] 
+        for i, nei in enumerate(graph):
+            for node in nei:
+                graph_modified[node].append(i)
+                outgoing[i] += 1
 
-        for i in range(len(graph)):
-            if not outgoing[i]:
-                queue.append(i)   
+        queue = deque()
+        for node, nei in enumerate(graph):
+            if not nei:
+                queue.append(node)
 
+        ans = []
         while queue:
-            node = queue.popleft() 
-            res.append(node)
-
-            for nei in graph_[node]:
+            node = queue.popleft()
+            ans.append(node)
+            for nei in graph_modified[node]:
                 outgoing[nei] -= 1
-                if outgoing[nei] == 0:
-                    queue.append(nei)
+                if not outgoing[nei]:
+                    queue.append(nei) 
 
-        return sorted(res)            
-
-           
-                
+        return sorted(ans)                   
+                 
 
 
 
 
-               
 
-
-        
         
