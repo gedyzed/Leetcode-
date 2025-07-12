@@ -4,11 +4,11 @@ func twoSum(nums []int, target int) []int {
     x := 0
     for i, num := range nums {
         x = target - num
-        _, ok := dict[x]
+        index, ok := dict[x]
         if ok {
-            return []int{dict[x], i}
+            return []int{index, i}
         }
         dict[num] = i
     } 
-    return []int{}
+    return nil
 }
