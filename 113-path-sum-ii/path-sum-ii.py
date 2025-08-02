@@ -7,33 +7,22 @@
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
 
-        def path(root, pathsum, nums_str):
+        def helper(root, path, pathsum):
 
             if not root:
                 return
 
             pathsum += root.val
-            nums_str += str(root.val) + ","
-            
+            path.append(root.val)
             if pathsum == targetSum and not root.right and not root.left:
-                res.append(nums_str)
-                return 
+                res.append(path[:])
 
-            path(root.left, pathsum, nums_str)
-            path(root.right, pathsum, nums_str)    
+            helper(root.left, path, pathsum)
+            helper(root.right, path, pathsum)  
 
-         
-        res = [] 
-        path(root, 0, "")
-        ans = []
-        for r in res:
-            r = r.split(",")
-            r = [int(num) for num in r if num != ""]
-            ans.append(r)
+            path.pop()
 
-        return ans    
+        res = []
+        helper(root, [], 0)
+        return res    
 
-
-                
-         
-        
