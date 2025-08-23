@@ -10,5 +10,6 @@ class Solution:
 
         if q % 2 == 0:
             return result[idx]
+            
         return result[n - idx - 1]
  
