@@ -11,11 +11,10 @@ class Solution:
             return 0
 
         queue = deque([(root, 1)])
-        min_depth = float('inf')
         while queue:
             node, depth = queue.popleft()
             if not node.left and not node.right:
-                min_depth = min(min_depth, depth)
+               return depth
             else:
                 if node.left:
                      queue.append((node.left, depth + 1))   
