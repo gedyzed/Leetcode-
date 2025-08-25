@@ -1,21 +1,31 @@
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
 
-        elements = defaultdict(list)
-        for r in range(len(mat)):
-            for c in range(len(mat[0])):
-                elements[r + c].append(mat[r][c])
 
-        res = []
-        values = elements.values()
-        for i, element in enumerate(values):
-            if i > 0 and i & 1 == 0:
-                res.extend(element[::-1])
+        m, n = len(mat), len(mat[0]) 
+        r = c = 0
+        res = [0] * (m * n) 
+        for i in range(m * n):
+            res[i] = mat[r][c]
+            if (r + c) & 1:
+                if r == m - 1:
+                    c += 1
+                elif c == 0:
+                    r += 1
+                else:
+                    r += 1
+                    c -= 1
             else:
-                res.extend(element)    
-
-        return res        
-
+                if c == n - 1:
+                    r += 1
+                elif r == 0:
+                    c += 1  
+                else:
+                    r -= 1
+                    c += 1
+               
+        return  res                  
+        
 
     
 
