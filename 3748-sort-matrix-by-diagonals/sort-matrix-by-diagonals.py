@@ -16,17 +16,15 @@ class Solution:
 
         # create ans matrix 
         # sort the diagonals and reverse to make it suitable for pop
-        # for each daigonals go over every matrix and check
+        # for each daigonals over certain rows and cols and check
 
         ans = [[0] * n for _ in range(n)]
         for idx in diagonals:
             nums = diagonals[idx]
             if idx < 0:
-                nums.sort()
+                nums.sort(reverse=True)
             else:
-                nums.sort(reverse=True)  
-
-            nums = nums[::-1]     
+                nums.sort()       
             for r in row[idx]:
                 for c in col[idx]:
                     if r - c == idx:
