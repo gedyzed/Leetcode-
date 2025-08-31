@@ -1,0 +1,49 @@
+from collections import defaultdict
+
+class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        rows = defaultdict(set)
+        cols = defaultdict(set)
+        boxes = defaultdict(set)
+
+        # initialize sets with existing numbers
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] != ".":
+                    val = board[r][c]
+                    rows[r].add(val)
+                    cols[c].add(val)
+                    boxes[(r // 3, c // 3)].add(val)  # use tuple as box key
+
+        def backtrack(r=0, c=0):
+            if c == 9:   # end of column, go to next row
+                return backtrack(r + 1, 0)
+            if r == 9:   # finished all rows → solved
+                return True
+
+            if board[r][c] != ".":
+                return backtrack(r, c + 1)
+
+            for ch in map(str, range(1, 10)):
+                if ch not in rows[r] and ch not in cols[c] and ch not in boxes[(r // 3, c // 3)]:
+                    # place number
+                    board[r][c] = ch
+                    rows[r].add(ch)
+                    cols[c].add(ch)
+                    boxes[(r // 3, c // 3)].add(ch)
+
+                    if backtrack(r, c + 1):
+                        return True
+
+                    # undo
+                    board[r][c] = "."
+                    rows[r].remove(ch)
+                    cols[c].remove(ch)
+                    boxes[(r // 3, c // 3)].remove(ch)
+
+            return False
+
+        backtrack()
