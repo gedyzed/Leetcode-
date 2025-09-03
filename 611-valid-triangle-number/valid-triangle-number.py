@@ -3,22 +3,11 @@ class Solution:
 
         nums.sort()
         n, count = len(nums), 0
-
-        for k in range(2, n):
-            j, i = k - 1, 0
-            while i < j:
-                if nums[i] + nums[j] > nums[k]:
-                    count += j - i
-                    j -= 1
-                else:    
-                    i += 1  
-
-        return count          
-    
+        for i in range(n):
+            for j in range(i + 1, n):
+                num = nums[i] + nums[j]
+                idx = bisect_left(nums, num)
+                count += max(0, idx - j - 1)
+                
+        return count        
              
-            
-
-
-
-
-        
