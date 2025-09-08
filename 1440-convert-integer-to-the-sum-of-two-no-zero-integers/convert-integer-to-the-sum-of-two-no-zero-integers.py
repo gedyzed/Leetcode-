@@ -4,16 +4,10 @@ class Solution:
         nums = set()
         for num in range(n):
             x = n - num                                               
-            if "0" in str(num) or "0" in str(x):
-                continue
+            if "0" not in str(num) and "0" not in str(x):
+                return [num, x]
 
-            if x in nums:
-                return [x, num]
-            elif num + num == n:
-                return [num, num]
-            nums.add(num)   
-
-        return []
+           
 
 
 
