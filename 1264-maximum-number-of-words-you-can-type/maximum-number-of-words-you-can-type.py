@@ -5,11 +5,11 @@ class Solution:
         words = set()
 
         for i, word in enumerate(text):
-            set_word = set(word)
+            # set_word = set(word)
             for b_letter in brokenLetters:
-                if b_letter in set_word and (word, i) not in words:
+                if b_letter in word and (word, i) not in words:
                     words.add((word, i))
-                    
+
         return len(text) - len(words)            
                    
 
