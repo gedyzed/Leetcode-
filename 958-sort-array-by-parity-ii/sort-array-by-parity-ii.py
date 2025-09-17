@@ -1,7 +1,7 @@
 class Solution:
     def sortArrayByParityII(self, nums: List[int]) -> List[int]:
 
-        nums.sort()
+        # nums.sort()
         ans = [0] * len(nums)
         even_idx, odd_idx = 0, 1
         for num in nums:
