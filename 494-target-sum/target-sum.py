@@ -1,35 +1,22 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
 
-        # def backtrack(index, currentSum):
-        #     count = 0
-        #     if index >= len(nums):
-        #         if currentSum == target:
-        #             count += 1
-        #         return count
-            
-        #     count += backtrack(index + 1, currentSum + nums[index])
-        #     count += backtrack(index + 1, currentSum - nums[index])
-
-        #     return count
-        # return backtrack(0, 0)
-
         memo = defaultdict(int)
-        def dp(index, prevail):
+        def dp(index, curr_sum):
 
-            if (index, prevail) in memo:
-                return memo[(index, prevail)]
+            if (index, curr_sum) in memo:
+                return memo[(index, curr_sum)]
             
-            if index == len(nums) and not prevail:
+            if index == len(nums) and curr_sum == target:
                 return 1
-            if index == len(nums) and prevail:
+            if index == len(nums) and curr_sum != target:
                 return 0  
 
-            count = dp(index + 1, prevail - nums[index])
-            count += dp(index + 1, prevail + nums[index])
-            memo[(index, prevail)] = count
+            count = dp(index + 1, curr_sum +  nums[index])
+            count += dp(index + 1, curr_sum - nums[index])
+            memo[(index, curr_sum)] = count
             return count
-        return dp(0, target)
+        return dp(0, 0)
         
         
             
