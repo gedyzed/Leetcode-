@@ -9,7 +9,7 @@ class Solution:
             if idx >= len(cost):
                 return 0
         
-            cost_ = min(dp(idx + 1) + cost[idx], dp(idx + 2) + cost[idx])
+            cost_ = cost[idx] + min(dp(idx + 1), dp(idx + 2))
             memo[idx] = cost_
             return cost_
     
