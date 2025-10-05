@@ -1,25 +1,24 @@
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
 
-        memo = defaultdict(int)
-        def dp(idx, i):
+        m = len(triangle)
+        dp, max_ = [], 0
+        for i in range(m):
+            n = len(triangle[i]) + 1
+            dp.append([0] * n)
+            max_ = max(max_, n)
+        
+        dp.append([0] * max_)
+        for i in range(m - 1, -1, -1):
+            n = len(triangle[i])
+            for j in range(n - 1, -1, -1):
+                num = triangle[i][j]
+                dp[i][j] = num +  min(dp[i + 1][j + 1], dp[i + 1][j])
 
-            if (idx, i) in memo:
-                return memo[(idx, i)]
-            
-            if idx == len(triangle):
-                return 0
-            
-            if i == len(triangle[idx]):
-                return float("inf")
+        return dp[0][0]
 
-            res = float("inf")
-            num = triangle[idx][i]
-            res = min(res, dp(idx + 1, i + 1) + num, dp(idx + 1, i) + num)
-            memo[(idx, i)] = res
-            return res
-            
-        return dp(0, 0)
+
+        
             
 
 
