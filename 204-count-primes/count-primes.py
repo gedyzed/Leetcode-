@@ -5,15 +5,11 @@ class Solution:
             isPrime = [True for _ in range(n + 1)]
             isPrime[0] = isPrime[1] = False
 
-            i = 2
-            while i <= n:
+            for i in range(2, n + 1):
                 if isPrime[i]:
-                    j = 2 * i
-                    while j <= n:
+                    for j in range(2 * i, n + 1, i):
                         isPrime[j] = False
-                        j += i
-                i += 1
-
+                        
             return isPrime
             
         if n <= 1:
