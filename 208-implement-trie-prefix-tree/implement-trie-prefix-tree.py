@@ -21,7 +21,6 @@ class Trie:
 
         cur = self.root
         for c in word:
-            idx = ord(c) - ord('a')
             if c not in cur.children:
                 return False
             cur = cur.children[c]
@@ -32,7 +31,6 @@ class Trie:
 
         cur = self.root
         for c in prefix:
-            idx = ord(c) - ord('a')
             if c not in cur.children:
                 return False
             cur = cur.children[c]
