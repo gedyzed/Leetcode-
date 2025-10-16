@@ -20,9 +20,6 @@ class Trie:
             for i in range(idx + 1, len(word)):
                 c = word[i]
                 if c == ".":
-                    if not cur.children:
-                        return False
-
                     for ch in cur.children:
                         if helper(cur.children[ch], i, word):
                             return True
