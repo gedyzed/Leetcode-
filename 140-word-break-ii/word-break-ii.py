@@ -3,29 +3,49 @@ class TrieNode:
         self.is_word = False
         self.children = {}
 
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        cur = self.root
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.is_word = True
+        
+    def search(self, idx, dp, s):
+        cur = self.root
+        for j in range(idx, len(s)):
+            c = s[j]
+            if c not in cur.children:
+                return False
+            cur = cur.children[c]
+            if cur.is_word:
+                dp[j] = True
+    
+    def searchWord(self, word) -> bool:
+        cur = self.root
+        for c in word:
+            if c not in cur.children:
+                return False
+            cur = cur.children[c]
+        
+        return cur.is_word
+
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        root = TrieNode()
+
+        trie = Trie()
         for word in wordDict:
-            cur = root
-            for c in word:
-                if c not in cur.children:
-                    cur.children[c] = TrieNode()
-                cur = cur.children[c]
-            cur.is_word = True
+            trie.insert(word)
         
         dp = [False] * len(s)
         for i in range(len(s)):
             if i == 0 or dp[i - 1]:
-                cur = root
-                for j in range(i, len(s)):
-                    c = s[j]
-                    if c not in cur.children:
-                        break
-                    cur = cur.children[c]
-                    if cur.is_word:
-                        dp[j] = True
-        
+                trie.search(i, dp, s)
+            
         if not dp[-1]:
             return []
         
@@ -37,7 +57,7 @@ class Solution:
             
             for i in range(idx + 1, len(s) + 1):
                 cur_word = s[idx: i]
-                if cur_word in wordDict:
+                if trie.searchWord(cur_word):
                     words.append(cur_word)
                     backtrack(i)
                     words.pop()
