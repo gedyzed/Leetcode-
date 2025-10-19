@@ -1,6 +1,10 @@
 class Solution:
     def canCross(self, stones: List[int]) -> bool:
 
+        stones_hash = {}
+        for i, stone in enumerate(stones):
+            stones_hash[stone] = i
+
         memo = defaultdict(bool)
         def dp(idx, k):
             index = (idx, k)
@@ -13,16 +17,21 @@ class Solution:
             if idx >= len(stones):
                 return False
             
-            for i in range(idx + 1, len(stones)):
-                if stones[i] == stones[idx] + k:
-                    if dp(i, k - 1) or dp(i, k) or dp(i, k + 1):
-                        memo[index] = True
-                        return True
+            for step in (k - 1, k, k + 1):
+                if step > 0:
+                    nxt_pos = stones[idx] + step
+                    if nxt_pos in stones_hash:
+                        i = stones_hash[nxt_pos]
+                        if dp(i, step):
+                            memo[index] = True
+                            return True
 
             memo[index] == False
             return memo[index]
 
-        return dp(0, 1)
+        if stones[1] != 1:
+            return False
+        return dp(1, 1)
 
 
 
