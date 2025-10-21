@@ -9,21 +9,21 @@ class Solution:
         def disktara(n, start_node, threshold):
             distances = {node: float('inf') for node in range(n)}
             distances[start_node] = 0
-            processed = set()
+            reached = set()
             heap = [(0, start_node)]
-            count = 0
             while heap:
                 c_dist, cur_node = heappop(heap)
+                if c_dist > threshold:
+                    break
+                     
                 for nei, weight in graph[cur_node]:
                     new_dist = c_dist + weight
                     if new_dist < distances[nei] and new_dist <= threshold:
                         distances[nei] = new_dist
                         heappush(heap, (new_dist, nei))
-                        if nei not in processed:
-                            count += 1
-                            processed.add(nei)
+                        reached.add(nei)
                       
-            return count
+            return len(reached)
         
         ans = count = n
         for node in range(n):
