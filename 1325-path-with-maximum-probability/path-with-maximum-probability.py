@@ -12,9 +12,13 @@ class Solution:
             distances = {node: float('-inf') for node in range(n)}
             distances[start_node] = -1
             heap = [(-1, start_node)]
+            processed = set()
 
             while heap:
                 cur_dist, cur_node = heappop(heap)
+                if cur_node in processed:
+                    continue
+                processed.add(cur_node)
                 for nei, weight in graph[cur_node]:
                     new_dist = -cur_dist * weight
                     if new_dist > distances[nei]:
