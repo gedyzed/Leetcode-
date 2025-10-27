@@ -1,41 +1,37 @@
+from typing import List
+from collections import defaultdict
+
 class Solution:
     def minimumCost(self, source: str, target: str, original: List[str], changed: List[str], cost: List[int]) -> int:
-
-        graph = defaultdict(list)
-        for i in range(len(original)):
-            org, ch = original[i], changed[i]
-            c = cost[i]
-            graph[org].append((ch, c))
-
-        def dikjsatra(source_node):
-            distances = [float('inf')] * 26
-            heap = [(0, source_node)]
-            idx = ord(source_node) - ord('a')
-            distances[idx] = 0
         
-            while heap:
-                cost_, node = heappop(heap)
-                for nei, weight in graph[node]:
-                    new_dist = cost_ + weight
-                    idx = ord(nei) - ord('a')
-                    if new_dist < distances[idx]:
-                        distances[idx] = new_dist
-                        heappush(heap, (new_dist, nei))
-            
-            return distances
-
-        ans, added = 0, defaultdict(list)
-        for i, src in enumerate(source):
-            idx = ord(target[i]) - ord('a')
-            if src not in added:
-                dist = dikjsatra(src)
-                added[src] = dist
-            else:
-                dist = added[src]
-            if dist[idx] == float('inf'):
+        n = 26
+        INF = float('inf')
+        
+        # Initialize distance matrix
+        dist = [[INF] * n for _ in range(n)]
+        for i in range(n):
+            dist[i][i] = 0  # zero cost to convert a letter to itself
+        
+        # Add edges
+        for o, c, w in zip(original, changed, cost):
+            u = ord(o) - ord('a')
+            v = ord(c) - ord('a')
+            dist[u][v] = min(dist[u][v], w)  
+        
+        # Floyd-Warshall: all-pairs shortest path
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    if dist[i][k] + dist[k][j] < dist[i][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+        
+        # Calculate total cost
+        total_cost = 0
+        for s, t in zip(source, target):
+            u = ord(s) - ord('a')
+            v = ord(t) - ord('a')
+            if dist[u][v] == INF:
                 return -1
-
-            ans += dist[idx]
-           
-        return ans       
-
+            total_cost += dist[u][v]
+        
+        return total_cost
