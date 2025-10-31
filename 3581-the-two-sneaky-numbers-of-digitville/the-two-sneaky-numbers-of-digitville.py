@@ -5,7 +5,8 @@ class Solution:
         for num in nums:
             if num in nums_set:
                 ans.append(num)
-            nums_set.add(num)
+            else:
+                nums_set.add(num)
         
         return ans
         
