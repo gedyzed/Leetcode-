@@ -6,7 +6,7 @@ class Solution:
             x = x % m
             while exp > 0:
                 if exp & 1:
-                    result *= x
+                    result = (result * x) % m
                 x = x * x % m
                 exp >>= 1
             
