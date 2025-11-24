@@ -8,18 +8,15 @@ class Solution:
             if nums[i]:
                 num |= 1
 
-            if not  num % 5:
+            num %= 5
+            if not num:
                 ans.append(True)
             else:
                 ans.append(False)
+            
+            
         
         return ans
 
             
             
-            
-
-        
-    
-
-        
