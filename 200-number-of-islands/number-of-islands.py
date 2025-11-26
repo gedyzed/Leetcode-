@@ -1,33 +1,33 @@
 class Solution:
+    def __init__(self):
+        self.directions  = [(0,1),(1,0),(-1,0),(0,-1)]
+        self.visted = []
+    def bfs(self,i,j,grid):
+        q = deque()
+        q.append((i,j))
+        self.visted[i][j] = 1
+        while q:
+            x,y = q.popleft()
+            for o,p in self.directions:
+                newx = x+o
+                newy = y+p
+                cond = 0<=newx <len(grid) and  0<= newy<len(grid[0])
+                if cond and grid[newx][newy]=="1" and self.visted[newx][newy]==0:
+                    self.visted[newx][newy] = 1
+                    q.append((newx,newy)) 
+                                                                      
+    def solve(self,grid):
+        self.visted = [[0]*len(grid[0]) for i in range(len(grid))]
+        count = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]=="1" and  self.visted[i][j]==0:
+                    self.bfs(i,j,grid)
+                    count+=1
+        return count
+
     def numIslands(self, grid: List[List[str]]) -> int:
+        return self.solve(grid)
 
-        directions = [(-1, 0), (1, 0), (0, 1), (0, -1)]
-        def inbound(row, col):
-            return (0 <= row < len(grid) and 0 <= col < len(grid[0]))
-
-        visited = set()
-        self.islands = 0
-        def dfs(row, col):
-            visited.add((row, col))
-            for row_range, col_range in directions: 
-                new_row = row + row_range
-                new_col = col + col_range
-               
-                if inbound(new_row, new_col) and (new_row, new_col) not in visited:
-                    if grid[new_row][new_col] == '1':
-                        dfs(new_row, new_col)
-                        
-                       
-        for row in range(len(grid)):
-            for col in range(len(grid[0])): 
-                if grid[row][col] == '1' and (row, col) not in visited:
-                    dfs(row, col) 
-                    self.islands += 1    
-
-        return self.islands                
-
-                    
-
-
-
+        
         
