@@ -1,24 +1,16 @@
 class Solution:
     def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
 
-        def countSorting(nums):
-            countArray = [0] * 101
+        s_nums = sorted([(num, i) for i, num in enumerate(nums)])
+        ans = [0] * len(nums)
+        ans[s_nums[0][1]] = 0
+        for i in range(1, len(nums)):
+            if s_nums[i][0] == s_nums[i - 1][0]:
+                ans[s_nums[i][1]] = ans[s_nums[i - 1][1]]
+            else:
+                ans[s_nums[i][1]] = i
 
-            for num in nums:
-                countArray[num] += 1
+        return ans
+            
 
-            result = [] 
-            for i, count in enumerate(countArray):
-                result.extend([i] * count)  
-
-            return result     
-
-        nums_ = countSorting(nums)
-        num_smaller = {}
-
-        for i in range(len(nums_)):
-            if nums_[i] not in num_smaller:
-                num_smaller[nums_[i]] = i
-
-        return [num_smaller[num] for num in nums ]
         
