@@ -3,16 +3,18 @@ class Solution:
 
         letters = Counter(s)
         stack = []
-        added = set()
+        visited = set()
         for ch in s:
             letters[ch] -= 1
-            while stack and stack[-1] > ch and letters[stack[-1]] and ch not in added:
+            if ch in visited:
+                continue
+
+            while stack and stack[-1] > ch and letters[stack[-1]]:
                 popped = stack.pop()
-                added.remove(popped)
+                visited.remove(popped)
             
-            if ch not in added:
-                stack.append(ch)
-                added.add(ch)
+            stack.append(ch)
+            visited.add(ch)
                
         return "".join(stack)
         
