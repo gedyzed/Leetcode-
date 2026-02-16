@@ -1,9 +1,13 @@
 class Solution:
     def reverseBits(self, n: int) -> int:
-        
-        binary = bin(n)[2:]
-        binary = binary[::-1]
-        binary = binary + "0" * (32 - len(binary))
 
-        return int(binary, 2)
+        ans = 0
+        for i in range(31):
+            if n & 1:
+                ans |= 1
+
+            n = n >> 1
+            ans <<= 1
+         
+        return ans
         
